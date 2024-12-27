@@ -1,0 +1,40 @@
+{% load static %}
+<nav class="bg-white mt-4">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-20">
+            <!-- Logo section -->
+            <div class="flex-shrink-0 flex items-center">
+                <img src="{% static 'images/logo.svg' %}" alt="Polda Kepri Fun Run" class="h-16 w-auto" />
+            </div>
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-4">
+                <a href="#"
+                    class="text-gray-900 hover:underline underline-offset-8 hover:text-decoration-blue-600 hover:decoration-2 px-3 py-2 text-lg font-bold">
+                    HOME
+                </a>
+                <a href="#"
+                    class="text-gray-900 hover:underline underline-offset-8 hover:text-decoration-blue-600 hover:decoration-2 px-3 py-2 text-lg font-bold">
+                    DOWNLOAD BIB
+                </a>
+                <a href="#"
+                    class="text-gray-900 hover:underline underline-offset-8 hover:text-decoration-blue-600 hover:decoration-2 px-3 py-2 text-lg font-bold">
+                    INFORMASI
+                </a>
+                <a href="#"
+                    class="text-gray-900 hover:underline underline-offset-8 hover:text-decoration-blue-600 hover:decoration-2 px-3 py-2 text-lg font-bold">
+                    GALERI
+                </a>
+                <div class="relative group">
+                    <button class="bg-black text-white px-4 py-3 text-lg font-bold">
+                        Pilih Bahasa
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div class="absolute right-0 hidden group-hover:block mt-1 w-48 bg-gray-100 rounded-md shadow-lg">
+                        <a href="#" class="block px-4 py-2 text-gray-900 hover:bg-gray-200">Bahasa Indonesia</a>
+                        <a href="#" class="block px-4 py-2 text-gray-900 hover:bg-gray-200">English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
