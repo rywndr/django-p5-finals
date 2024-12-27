@@ -1,6 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+
+from .forms import RegistrationForm
 
 
-# Create your views here.
 def index(request):
-    return render(request, "home/index.html")
+    if request.method == "POST":
+        form = RegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return redirect("success_page_todo")
+    else:
+        form = RegistrationForm()
+
+    return render(request, "home/index.html", {"form": form})

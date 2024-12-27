@@ -1,52 +1,54 @@
-<div class="bg-red-600 pt-16 pb-16 font-montserrat flex flex-col items-center justify-center">
-    <h1 class="text-white text-7xl font-[900] mb-4">COMING SOON</h1>
+<div
+  class="bg-red-600 pt-24 pb-24 font-montserrat flex flex-col items-center justify-center"
+>
+  <h1 class="text-white text-7xl font-[900] mb-4">COMING SOON</h1>
 
-    <div class="flex gap-16 text-white text-center">
-        <div>
-            <div class="text-9xl font-[900]" id="days">164</div>
-            <div class="text-3xl font-[900]">days</div>
-        </div>
-        <div>
-            <div class="text-9xl font-[900]" id="hours">03</div>
-            <div class="text-3xl font-[900]">hours</div>
-        </div>
-        <div>
-            <div class="text-9xl font-[900]" id="minutes">39</div>
-            <div class="text-3xl font-[900]">mins</div>
-        </div>
-        <div>
-            <div class="text-9xl font-[900]" id="seconds">21</div>
-            <div class="text-3xl font-[900]">secs</div>
-        </div>
+  <div class="flex gap-16 text-white text-center">
+    <div>
+      <div class="text-9xl font-[900]" id="days">164</div>
+      <div class="text-3xl font-[900]">days</div>
     </div>
+    <div>
+      <div class="text-9xl font-[900]" id="hours">03</div>
+      <div class="text-3xl font-[900]">hours</div>
+    </div>
+    <div>
+      <div class="text-9xl font-[900]" id="minutes">39</div>
+      <div class="text-3xl font-[900]">mins</div>
+    </div>
+    <div>
+      <div class="text-9xl font-[900]" id="seconds">21</div>
+      <div class="text-3xl font-[900]">secs</div>
+    </div>
+  </div>
 </div>
 
 <script>
-    function updateCountdown() {
-        const targetDate = new Date("2025-06-10T00:00:00");
-        const now = new Date();
-        const diff = targetDate - now;
+  function updateCountdown() {
+    const targetDate = new Date("2025-06-10T00:00:00");
+    const now = new Date();
+    const diff = targetDate - now;
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById("days").textContent = String(days).padStart(3, "0");
-        document.getElementById("hours").textContent = String(hours).padStart(
-            2,
-            "0",
-        );
-        document.getElementById("minutes").textContent = String(minutes).padStart(
-            2,
-            "0",
-        );
-        document.getElementById("seconds").textContent = String(seconds).padStart(
-            2,
-            "0",
-        );
-    }
+    document.getElementById("days").textContent = String(days).padStart(3, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(
+      2,
+      "0",
+    );
+    document.getElementById("minutes").textContent = String(minutes).padStart(
+      2,
+      "0",
+    );
+    document.getElementById("seconds").textContent = String(seconds).padStart(
+      2,
+      "0",
+    );
+  }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 </script>
