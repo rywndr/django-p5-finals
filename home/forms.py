@@ -1,5 +1,9 @@
 from django import forms
-from django.core.validators import RegexValidator
+from django.core.validators import (
+    EmailValidator,
+    FileExtensionValidator,
+    RegexValidator,
+)
 
 
 class RegistrationForm(forms.Form):
@@ -11,6 +15,7 @@ class RegistrationForm(forms.Form):
     email = forms.EmailField(
         label="E-mail",
         widget=forms.EmailInput(attrs={"placeholder": "Masukkan email Anda"}),
+        validators=[EmailValidator()],
     )
     jenis_kelamin = forms.ChoiceField(
         label="Jenis Kelamin",
@@ -79,7 +84,10 @@ class RegistrationForm(forms.Form):
         max_length=255,
         widget=forms.TextInput(attrs={"placeholder": "Masukkan nomor ID Anda"}),
     )
-    id_upload = forms.FileField(label="Upload KTP/ID Anda")
+    id_upload = forms.FileField(
+        label="Upload KTP/ID Anda",
+        validators=[FileExtensionValidator(["pdf", "jpg", "jpeg", "png"])],
+    )
 
     kategori = forms.ChoiceField(
         label="Kategori",
@@ -114,20 +122,20 @@ class RegistrationForm(forms.Form):
             "Memiliki Riwayat Penyakit Hipertensi",
         ),
         (
-            "Memiliki Riwayat Penyakit Kronik/Tahunan Lainnya (Diabetes Melitus, Ginjal, Hepatitis, dll)",
-            "Memiliki Riwayat Penyakit Kronik/Tahunan Lainnya (Diabetes Melitus, Ginjal, Hepatitis, dll)",
+            "Memiliki Riwayat Penyakit Kronik dan atau Tahunan Lainnya",
+            "Memiliki Riwayat Penyakit Kronik dan atau Tahunan Lainnya",
         ),
         (
-            "Memiliki Riwayat Penyakit Epilepsi dan/atau Gangguan Saraf Lainnya",
-            "Memiliki Riwayat Penyakit Epilepsi dan/atau Gangguan Saraf Lainnya",
+            "Memiliki Riwayat Penyakit Epilepsi dan atau Gangguan Saraf Lainnya",
+            "Memiliki Riwayat Penyakit Epilepsi dan atau Gangguan Saraf Lainnya",
         ),
         (
-            "Memiliki Riwayat Penyakit Asma/Saluran Pernafasan Lainnya",
-            "Memiliki Riwayat Penyakit Asma/Saluran Pernafasan Lainnya",
+            "Memiliki Riwayat Penyakit Asma atau Saluran Pernafasan Lainnya",
+            "Memiliki Riwayat Penyakit Asma atau Saluran Pernafasan Lainnya",
         ),
         (
-            "Memiliki Asuransi BPJS dan/atau Asuransi Lainnya",
-            "Memiliki Asuransi BPJS dan/atau Asuransi Lainnya",
+            "Memiliki Asuransi BPJS dan atau Asuransi Lainnya",
+            "Memiliki Asuransi BPJS dan atau Asuransi Lainnya",
         ),
         (
             "Memiliki Riwayat Alergi Terhadap Obat Tertentu",
@@ -162,4 +170,7 @@ class RegistrationForm(forms.Form):
         label="Ukuran Baju", choices=[("S", "S"), ("M", "M"), ("L", "L"), ("XL", "XL")]
     )
 
-    payment_proof = forms.FileField(label="Struk/Nota Konfirmasi Pembayaran")
+    payment_proof = forms.FileField(
+        label="Struk/Nota Konfirmasi Pembayaran",
+        validators=[FileExtensionValidator(["pdf", "jpg", "jpeg", "png"])],
+    )

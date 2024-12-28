@@ -26,7 +26,7 @@
           >
             {{ field.label }}
           </label>
-          {{ field|add_class:"block w-1/2 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
+          {{ field|add_class:"block w-3/5 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
           <div id="progress-{{ field.id_for_label }}" class="mt-2 hidden">
             <p class="text-sm text-gray-300">100% completed</p>
             <p id="success-message-{{ field.id_for_label }}" class="text-green-500 text-sm mt-1"></p>
@@ -38,7 +38,7 @@
           >
             {{ field.label }}
           </label>
-          {{ field|add_class:"block w-1/2 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
+          {{ field|add_class:"block w-3/5 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
         {% endif %}
         {% if field.errors %}
           <div class="text-red-500 text-sm mt-1">
