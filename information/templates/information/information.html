@@ -1,12 +1,12 @@
-{{ extends 'base.html' }}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Information
 {% endblock %}
 
 {% block content %}
-    <h1>Information</h1>
-    <p>
-        Polda Kepri Fun Run is a running event that is held annually in Batam, Indonesia. The event is organized by the Riau Islands Regional Police (Polda Kepri) and is open to the public. Participants can choose to run in either the 5K or 10K category. The event aims to promote a healthy lifestyle and raise awareness about the importance of physical activity.
-    </p>
+    <div class="w-full">
+        <img src="{% static 'images/banner5.png' %}" alt="Banner 4" class="w-full h-auto" />
+    </div>
 {% endblock %}
