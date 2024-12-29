@@ -1,45 +1,43 @@
 {% load widget_tweaks %}
 
-<div class="bg-black text-white py-16 px-4 md:px-8 w-full">
-  <h1 class="text-6xl font-bold text-left pl-72 mb-8">REGISTRASI</h1>
-  <p class="text-left text-lg pl-72 mb-8">
+<div class="bg-black text-white py-16 px-4 sm:px-8 w-full">
+  <!-- title -->
+  <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-left mb-6 sm:mb-8 sm:pl-16 md:pl-36 lg:pl-48">
+    REGISTRASI
+  </h1>
+  
+  <p class="text-left text-sm sm:text-base md:text-lg mb-6 sm:mb-8 sm:pl-16 md:pl-36 lg:pl-48">
     Silakan isi formulir ini jika Anda siap untuk mengamankan posisi Anda di Polda Kepri Fun Run 2025.
   </p>
-  <form method="post" enctype="multipart/form-data" class="pl-64" id="registration-form">
+  
+  <!-- form -->
+  <form method="post" enctype="multipart/form-data" class="sm:pl-12 md:pl-36 lg:pl-48" id="registration-form">
     {% csrf_token %}
     {% for field in form %}
       <div class="mb-4">
         {% if field.field.widget.input_type == 'radio' %}
-          <div class="flex flex-col ">
-            <label
-              for="{{ field.id_for_label }}"
-              class="text-sm font-medium text-gray-300 mr-2"
-            >
+          <div class="flex flex-col">
+            <label for="{{ field.id_for_label }}" class="text-sm font-medium text-gray-300 mb-2">
               {{ field.label }}
             </label>
             {{ field }}
           </div>
         {% elif field.field.widget.input_type == 'file' %}
-          <label
-            for="{{ field.id_for_label }}"
-            class="block text-sm font-medium text-gray-300 mb-2 inline-block"
-          >
+          <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
             {{ field.label }}
           </label>
-          {{ field|add_class:"block w-3/5 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
+          {{ field|add_class:"block w-full sm:w-4/5 lg:w-3/5 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
           <div id="progress-{{ field.id_for_label }}" class="mt-2 hidden">
             <p class="text-sm text-gray-300">100% completed</p>
             <p id="success-message-{{ field.id_for_label }}" class="text-green-500 text-sm mt-1"></p>
           </div>
         {% else %}
-          <label
-            for="{{ field.id_for_label }}"
-            class="block text-sm font-medium text-gray-300 mb-2 inline-block"
-          >
+          <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
             {{ field.label }}
           </label>
-          {{ field|add_class:"block w-3/5 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
+          {{ field|add_class:"block w-full sm:w-4/5 lg:w-3/5 text-white bg-[#333333] px-2 py-3 border-2 border-gray-500 focus:ring-gray-500 focus:border-gray-500" }}
         {% endif %}
+        
         {% if field.errors %}
           <div class="text-red-500 text-sm mt-1">
             {% for error in field.errors %}
@@ -49,9 +47,10 @@
         {% endif %}
       </div>
     {% endfor %}
+    
     <button
       type="submit"
-      class="bg-black border-2 border-white mt-4 text-white px-8 py-3 hover:border-black transition"
+      class="bg-black border-2 border-white mt-4 text-white px-6 sm:px-8 py-2 sm:py-3 hover:border-black transition"
     >
       Submit
     </button>
@@ -73,7 +72,6 @@
     }
   }
 
-  // Add event listeners to file input fields
   document.querySelectorAll('input[type="file"]').forEach(function (fileInput) {
     const fieldLabel = fileInput.closest('div').querySelector('label').textContent.trim();
 

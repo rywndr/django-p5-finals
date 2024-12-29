@@ -148,7 +148,7 @@ class RegistrationForm(forms.Form):
             label=condition[0],
             choices=[("Ya", "Ya"), ("Tidak", "Tidak")],
             widget=forms.RadioSelect(
-                attrs={"class": "inline-block"},  # Ensure radio buttons are stacked
+                attrs={"class": "inline-block"},
             ),
         )
 

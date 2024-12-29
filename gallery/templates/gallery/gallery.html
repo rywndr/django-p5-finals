@@ -1,10 +1,118 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Gallery{% endblock %}
+{% block title %}
+    Gallery
+{% endblock %}
 
 {% block content %}
-    <div class="bg-black text-white py-16 px-4 md:px-8 w-full">
-        <h2 class="text-5xl text-center font-bold mb-8">TEASER</h2>
-        <h2 class="text-5xl text-center font-bold mb-8">GALERI</h2>
+<div class="bg-black text-white py-24 px-4 md:px-8 w-full">
+    <!-- teaser  -->
+    <h2 class="text-5xl text-center font-bold">TEASER</h2>
+    <div class="flex justify-center">
+        <video autoplay loop muted class="w-full max-w-6xl rounded-md">
+            <source src="{% static 'videos/teaser.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
+    <!-- galeri -->
+    <h2 class="text-5xl text-center font-bold mb-8">GALERI</h2>
+    <div class="max-w-6xl mx-auto"> 
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4">
+            <div>
+                <img src="{% static 'images/galeri1.jpeg' %}" alt="Gallery 1" class="w-full shadow-lg cursor-pointer" onclick="openModal(0)">
+            </div>
+            <div>
+                <img src="{% static 'images/galeri2.jpeg' %}" alt="Gallery 2" class="w-full shadow-lg cursor-pointer" onclick="openModal(1)">
+            </div>
+            <div>
+                <img src="{% static 'images/galeri3.jpeg' %}" alt="Gallery 3" class="w-full shadow-lg cursor-pointer" onclick="openModal(2)">
+            </div>
+            <div>
+                <img src="{% static 'images/galeri4.jpeg' %}" alt="Gallery 4" class="w-full shadow-lg cursor-pointer" onclick="openModal(3)">
+            </div>
+            <div>
+                <img src="{% static 'images/galeri5.jpeg' %}" alt="Gallery 5" class="w-full shadow-lg cursor-pointer" onclick="openModal(4)">
+            </div>
+            <div>
+                <img src="{% static 'images/galeri6.jpeg' %}" alt="Gallery 6" class="w-full shadow-lg cursor-pointer" onclick="openModal(5)">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- overlay -->
+<div id="modal" class="fixed top-0 left-0 w-full h-full bg-black hidden z-50 flex justify-center items-center" onclick="handleOverlayClick(event)">
+    <div class="absolute top-4 left-4 text-white text-sm"> 
+        <span id="imageCounter">1/6</span>
+    </div>
+    <button class="absolute top-5 right-12 text-white text-2xl" onclick="toggleFullScreen()">⛶</button>
+    <button class="absolute top-4 right-4 text-white text-3xl" onclick="closeModal()">&times;</button>
+    <div class="relative w-full max-w-4xl">
+        <img id="modalImage" src="" alt="Modal Image" class="w-full">
+    </div>
+    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl" onclick="prevImage(event)">&#10094;</button>
+    <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl" onclick="nextImage(event)">&#10095;</button>
+</div>
+
+<script>
+    const images = [
+        '{% static "images/galeri1.jpeg" %}',
+        '{% static "images/galeri2.jpeg" %}',
+        '{% static "images/galeri3.jpeg" %}',
+        '{% static "images/galeri4.jpeg" %}',
+        '{% static "images/galeri5.jpeg" %}',
+        '{% static "images/galeri6.jpeg" %}'
+    ];
+
+    let currentIndex = 0;
+
+    function openModal(index) {
+        currentIndex = index;
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modalImage');
+        const imageCounter = document.getElementById('imageCounter');
+        modalImage.src = images[currentIndex];
+        imageCounter.textContent = `${currentIndex + 1}/${images.length}`;
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.add('hidden');
+    }
+
+    function nextImage(event) {
+        event.stopPropagation();
+        currentIndex = (currentIndex + 1) % images.length;
+        updateModalContent();
+    }
+
+    function prevImage(event) {
+        event.stopPropagation();
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateModalContent();
+    }
+
+    function updateModalContent() {
+        const modalImage = document.getElementById('modalImage');
+        const imageCounter = document.getElementById('imageCounter');
+        modalImage.src = images[currentIndex];
+        imageCounter.textContent = `${currentIndex + 1}/${images.length}`;
+    }
+
+    function handleOverlayClick(event) {
+        if (event.target.id === 'modal') {
+            closeModal();
+        }
+    }
+
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+</script>
 {% endblock %}
