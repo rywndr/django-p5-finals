@@ -1,11 +1,13 @@
 import mailtrap as mt
 from decouple import config
 from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_protect
 
 from .forms import RegistrationForm
 from .models import Registration
 
 
+@csrf_protect
 def index(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST, request.FILES)
@@ -66,13 +68,11 @@ def index(request):
             mail = mt.Mail(
                 sender=mt.Address(
                     email="hello@demomailtrap.com",
-                    name="Registration Form Submission for {}".format(
-                        registration.nama
-                    ),
+                    name=f"Registration Form Submission for {registration.nama}",
                 ),
                 to=[mt.Address(email=registration.email)],
                 subject="Polda Kepri Registration Form Submission",
-                text="Thank you {} for submitting the registration form.",
+                text=f"Thank you {registration.nama} for submitting the registration form.",
                 category="Registration Form Submission",
             )
 

@@ -128,7 +128,11 @@ class Registration(models.Model):
         max_length=5, choices=[("Ya", "Ya"), ("Tidak", "Tidak")]
     )
     memiliki_riwayat_penyakit_epilepsi_dan_atau_gangguan_saraf_lainnya = (
-        models.CharField(max_length=5, choices=[("Ya", "Ya"), ("Tidak", "Tidak")])
+        models.CharField(
+            max_length=5,
+            choices=[("Ya", "Ya"), ("Tidak", "Tidak")],
+            db_column="riwayat_penyakit_epilepsi",
+        )
     )
     memiliki_riwayat_penyakit_asma_saluran_pernafasan_lainnya = models.CharField(
         max_length=5, choices=[("Ya", "Ya"), ("Tidak", "Tidak")]
